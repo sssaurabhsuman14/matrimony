@@ -41,10 +41,6 @@ public class UserService
 		}
 	}
 	
-	public User getUser(Long id) {
-		return userRepository.findById(id).get();
-
-	}
 
 	public List<UserModel> searchProfile(SearchModel searchModel) {
 
@@ -54,6 +50,16 @@ public class UserService
 		BeanUtils.copyProperties(userList, userModelList);
 
 		return userModelList;
+	}
+	
+	public User getUser(Long id) throws ApplicationException {
+		User user = new User();
+		user = userRepository.findById(id).get();
+		if( user != null) {
+			return user;
+		}else {
+			throw new ApplicationException("User with given id does not exists !!!");
+		}
 	}
 
 }

@@ -3,6 +3,8 @@ package com.hcl.matrimony.exception;
 public class ApplicationException extends Exception 
 {
 
+	private static final long serialVersionUID = -2373494055438791710L;
+
 	public ApplicationException() {
 		super();
 		// TODO Auto-generated constructor stub
