@@ -23,7 +23,7 @@ public class SearchController {
 	//@GetMapping
 	/*public ResponseEntity<?> searchFlight(@Valid @RequestBody SearchModel searchModel){
 		userService
-		return new ResponseEntity (user ,HttpStatus.OK);
+		return new ResponseEntity (user ,HttpStatus.OK);		
 	}*/
 
 }

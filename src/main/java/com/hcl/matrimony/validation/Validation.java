@@ -13,8 +13,10 @@ public class Validation
 	public static void validateLoginRequest(String email,String password) throws ApplicationException 
 	{
 		
-		if(!StringUtils.hasText(email)&&!StringUtils.hasText(password))
-			throw new ApplicationException("Please check email and password");
+		System.out.println("hi");
+		
+		if(!StringUtils.hasText(password) || !StringUtils.hasText(email))
+			throw new ApplicationException("Please enter mandatory fields");
 		
 		
 	}
