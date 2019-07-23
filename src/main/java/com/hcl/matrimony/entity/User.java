@@ -3,6 +3,7 @@ package com.hcl.matrimony.entity;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -24,6 +25,7 @@ import lombok.*;
 	@Column(name = "user_id", nullable=false)
 	private Long userId;
 	
+	@Email
 	@Column(name = "email", nullable=false)
 	private String email;
 	

@@ -25,7 +25,7 @@ public class SearchController {
 	UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<?> searchFlight(@Valid @RequestBody SearchModel searchModel){
+	public ResponseEntity<?> searchProfile(@Valid @RequestBody SearchModel searchModel){
 		List<UserModel> userModelList = userService.searchProfile(searchModel);
 		
 		ResponseData response = new ResponseData("Please find profiles based on search parameters " , HttpStatus.OK, userModelList);
