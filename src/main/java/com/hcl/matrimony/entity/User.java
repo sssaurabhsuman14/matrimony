@@ -14,11 +14,9 @@ import lombok.*;
 @Entity
 @Table(name="user")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userid")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
  class User {
 	
 	@Id

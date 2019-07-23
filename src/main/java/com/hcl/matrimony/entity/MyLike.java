@@ -17,14 +17,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="like")
+@Table(name="my_like")
 @Data
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "likeid")
-public class Like {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "likeId")
+public class MyLike {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +32,7 @@ public class Like {
 	@Column(name = "follower_user_id", nullable=false)
 	private Long followerUserId;
 	
-	@Column(name = "followering_user_id", nullable=false)
-	private Long followeringUserId;
+	@Column(name = "following_user_id", nullable=false)
+	private Long followingUserId;
 	
 }
