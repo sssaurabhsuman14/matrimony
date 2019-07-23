@@ -37,7 +37,7 @@ import lombok.*;
 	private LocalDate dob;
 	
 	@Column(name = "height", nullable=false)
-	private Integer height;
+	private String height;
 	
 	@Column(name = "marital_status", nullable=false)
 	private String maritalStatus;

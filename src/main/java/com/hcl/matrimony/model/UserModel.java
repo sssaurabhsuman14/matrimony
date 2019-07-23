@@ -21,7 +21,7 @@ public class UserModel {
 	String password;
 	String userName;
 	LocalDate dateOfBirth;
-	Double height;
+	String height;
 	String maritalStatus;
 	String motherTounge;
 	String religion;
