@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hcl.matrimony.model.SearchModel;
+import com.hcl.matrimony.service.UserService;
 
 @Controller
 @RequestMapping("/search")
@@ -19,11 +20,10 @@ public class SearchController {
 	@Autowired
 	UserService userService;
 	
-	@SuppressWarnings("unchecked")
-	@GetMapping
-	public ResponseEntity<?> searchFlight(@Valid @RequestBody SearchModel searchModel){
-		Object user;
+	//@GetMapping
+	/*public ResponseEntity<?> searchFlight(@Valid @RequestBody SearchModel searchModel){
+		userService
 		return new ResponseEntity (user ,HttpStatus.OK);
-	}
+	}*/
 
 }
