@@ -77,6 +77,7 @@ public class LikeService {
 	public List<User> fetchFollowList(Long userId) throws ApplicationException 
 	{
 		User loginUser = userService.getUser(userId);
+		User user = new User();
 		
 		List<User> followUserList = new ArrayList<>();
 		Optional<List<MyLike>> findByFollowerUserIdOptional = myLikeRepository.findByFollowerUserId(userId);
@@ -84,9 +85,10 @@ public class LikeService {
 		if(isOptionalPresent)
 		{
 			List<MyLike> myLikeList = (List<MyLike>) findByFollowerUserIdOptional.get();
+			
 			for(MyLike myLikeRecord : myLikeList)
 			{
-				User user = userService.getUser(myLikeRecord.getFollowingUserId());
+				 user = userService.getUser(myLikeRecord.getFollowingUserId());
 				followUserList.add(user);
 			}
 		}

@@ -94,7 +94,6 @@ public List<UserModel> getFollowing(Long followingUserId){
 	{
 		List<UserModel> userModelList = new ArrayList<>();
 		List<User> fetchFollowList = likeService.fetchFollowList(userId);
-		
 		return mappingEntityListToModelList(fetchFollowList,userModelList);
 		
 	}
@@ -102,9 +101,10 @@ public List<UserModel> getFollowing(Long followingUserId){
 
 	private List<UserModel> mappingEntityListToModelList(List<User> fetchFollowList, List<UserModel> userModelList) 
 	{
-		UserModel userModel = new UserModel();
+		
 		for(User user : fetchFollowList)
 		{
+			UserModel userModel = new UserModel();
 			BeanUtils.copyProperties(user, userModel);
 			userModelList.add(userModel);
 		}
