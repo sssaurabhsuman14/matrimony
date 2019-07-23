@@ -2,8 +2,6 @@ package com.hcl.matrimony.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hcl.matrimony.entity.User;
 import com.hcl.matrimony.exception.RecordNotFoundException;
 import com.hcl.matrimony.model.ResponseData;
 import com.hcl.matrimony.model.SearchModel;
@@ -26,7 +25,7 @@ public class SearchController {
 	UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<?> searchProfile(@PathVariable(value = "age") int age, @PathVariable(value = "height") String height, @PathVariable(value = "religion") String religion, @PathVariable(value = "city") String city, @PathVariable(value = "maritalStatus") String maritalStatus){
+	public ResponseEntity<?> searchProfile(@PathVariable(value = "age") Integer age, @PathVariable(value = "height") String height, @PathVariable(value = "religion") String religion, @PathVariable(value = "city") String city, @PathVariable(value = "maritalStatus") String maritalStatus){
 		
 		SearchModel searchModel = new SearchModel();
 		searchModel.setAge(age);
@@ -35,10 +34,10 @@ public class SearchController {
 		searchModel.setCity(city);
 		searchModel.setMaritalStatus(maritalStatus);
 		
-		List<UserModel> userModelList = userService.searchProfile(searchModel);
+		List<User> userList = userService.searchProfile(searchModel);
 		
-		if (!userModelList.isEmpty()) {
-		ResponseData response = new ResponseData("Please find below profiles based on search parameters " , HttpStatus.OK, userModelList);
+		if (!userList.isEmpty()) {
+		ResponseData response = new ResponseData("Please find below profiles based on search parameters " , HttpStatus.OK, userList);
 
 		return new ResponseEntity (response ,HttpStatus.OK);
 		}

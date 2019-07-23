@@ -1,12 +1,13 @@
 package com.hcl.matrimony.service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.hcl.matrimony.entity.User;
 import com.hcl.matrimony.exception.ApplicationException;
 import com.hcl.matrimony.model.SearchModel;
@@ -34,7 +35,7 @@ public class UserService
 				BeanUtils.copyProperties(user, userModel);
 				return userModel;
 			}
-				
+
 			else
 				throw new ApplicationException("Hi, "+user.getUserName()+" Password is Incorrect, Please Enter correct credential");
 		}
@@ -43,19 +44,16 @@ public class UserService
 			throw new ApplicationException("User with "+email+" Not found, Please do Registration");
 		}
 	}
-	
 
-	public List<UserModel> searchProfile(SearchModel searchModel) {
 
-		//int requiredDOBYear = LocalDate.now().getYear()-searchModel.getAge();
+	public List<User> searchProfile(SearchModel searchModel) {
+
 		List<User> userList = userRepository.searchProfiles(searchModel.getAge(), searchModel.getHeight(), searchModel.getReligion(), searchModel.getCity(), searchModel.getMaritalStatus());
 		List<UserModel> userModelList = new ArrayList<UserModel>();
-		
-		BeanUtils.copyProperties(userList, userModelList);
 
-		return userModelList;
+		return userList;
 	}
-	
+
 	public User getUser(Long id) throws ApplicationException {
 		User user = new User();
 		user = userRepository.findById(id).get();
