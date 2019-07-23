@@ -25,7 +25,7 @@ public class RegistrationController {
 		Validation.validateUser(user);
 		Validation.validateEmail(user);
 		registrationService.addUser(user);
-		return new ResponseEntity<>("Hurrayy!!!, "+user.getUserName()+" Welocome to Matrimonty", HttpStatus.OK);		
+		return new ResponseEntity<>("Hurrayy!!!, "+user.getUserName()+" Welcome to Matrimony", HttpStatus.OK);		
 		 
 		
 		
