@@ -9,13 +9,13 @@ import com.hcl.matrimony.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	public List<User> findByReligion();
+	public List<User> findByReligion(String religion);
 	
-	public List<User> findByHeight();
-	
-	public List<User> findByCity();
+	public List<User> findByHeight(Integer height);
 	
 	public Optional<User> findByEmail(String email);
 
-	public List<User> findByMaritalStatus();
+	public List<User> findByCity(String city);
+
+	public List<User> findByMaritalStatus(String maritalStatus);
 }
