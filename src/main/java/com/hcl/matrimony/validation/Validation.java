@@ -11,14 +11,10 @@ public class Validation
 {
 	 
 	public static void validateLoginRequest(String email,String password) throws ApplicationException 
-	{
-		
-		System.out.println("hi");
-		
+	{		
 		if(!StringUtils.hasText(password) || !StringUtils.hasText(email))
 			throw new ApplicationException("Please enter mandatory fields");
-		
-		
+
 	}
 
 	

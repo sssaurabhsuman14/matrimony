@@ -3,14 +3,9 @@ package com.hcl.matrimony.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.hcl.matrimony.entity.User;
 import com.hcl.matrimony.exception.ApplicationException;
 import com.hcl.matrimony.model.SearchModel;
@@ -23,15 +18,20 @@ public class UserService
 	@Autowired
 	UserRepository userRepository;
 
-	public User doLogin(String email, String password) throws ApplicationException 
+	public UserModel doLogin(String email, String password) throws ApplicationException 
 	{
+		UserModel userModel = new UserModel();
 		Optional<User> findByEmailOptional = userRepository.findByEmail(email);
 
 		if(findByEmailOptional.isPresent())
 		{
 			User user = findByEmailOptional.get();
 			if(user.getPassword().equals(password))
-				return user;
+			{
+				BeanUtils.copyProperties(user, userModel);
+				return userModel;
+			}
+				
 			else
 				throw new ApplicationException("Hi, "+user.getUserName()+" Password is Incorrect, Please Enter correct credential");
 		}
