@@ -19,8 +19,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	public List<User> findByMaritalStatus(String maritalStatus);
 
 	public Optional<User> findByEmail(String email);
-
-	public List<User> findByMaritalStatus();
 	
 	@Query(value="select * from user where age = (:age) and height = (:height) and religion= (:religion)"
 			+ " and city = (:city) and marital_status = (:maritalStatus) ", nativeQuery = true)
