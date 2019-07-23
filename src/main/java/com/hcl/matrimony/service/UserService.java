@@ -32,5 +32,9 @@ public class UserService
 			throw new ApplicationException("User with "+email+" Not found, Please do Registration");
 		}
 	}
+	
+	public User getUser(Long id) {
+		return userRepository.findById(id).get();
+	}
 
 }
