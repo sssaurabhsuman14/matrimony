@@ -8,7 +8,7 @@ public class SearchModel {
 	private String city;
 	private String maritalStatus;
 	private Long userId;
-	
+
 	public int getAge() {
 		return age;
 	}
@@ -39,7 +39,7 @@ public class SearchModel {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-	
+
 	public Long getUserId() {
 		return userId;
 	}
@@ -58,6 +58,6 @@ public class SearchModel {
 	public SearchModel() {
 		super();
 	}
-	
-	
+
+
 }

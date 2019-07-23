@@ -17,14 +17,14 @@ import com.hcl.matrimony.model.SearchModel;
 import com.hcl.matrimony.service.UserService;
 
 @Controller
-@RequestMapping("/search/{age}/{height}/{religion}/{city}/{maritalStatus}")
+@RequestMapping("/search/{age}/{height}/{religion}/{city}/{maritalStatus}/{userId}")
 public class SearchController {
 
 	@Autowired
 	UserService userService;
 
 	@GetMapping
-	public ResponseEntity<ResponseData> searchProfile(@PathVariable(value = "age") Integer age, @PathVariable(value = "height") String height, @PathVariable(value = "religion") String religion, @PathVariable(value = "city") String city, @PathVariable(value = "maritalStatus") String maritalStatus) throws ApplicationException{
+	public ResponseEntity<ResponseData> searchProfile(@PathVariable(value = "age") Integer age, @PathVariable(value = "height") String height, @PathVariable(value = "religion") String religion, @PathVariable(value = "city") String city, @PathVariable(value = "maritalStatus") String maritalStatus, @PathVariable(value = "userId") Long userId) throws ApplicationException{
 
 		SearchModel searchModel = new SearchModel();
 		searchModel.setAge(age);
@@ -32,7 +32,8 @@ public class SearchController {
 		searchModel.setReligion(religion);
 		searchModel.setCity(city);
 		searchModel.setMaritalStatus(maritalStatus);
-
+		searchModel.setUserId(userId);
+		
 		List<User> userList = userService.searchProfile(searchModel);
 
 		if (!userList.isEmpty()) {

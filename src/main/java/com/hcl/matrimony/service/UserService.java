@@ -55,7 +55,7 @@ public class UserService
 
 		for (User user : userList) {
 			if(user.getUserId().equals(searchModel.getUserId())) {
-				userList.remove(user);
+				userList.remove(new User(user));
 			}
 		}
 		return userList;
