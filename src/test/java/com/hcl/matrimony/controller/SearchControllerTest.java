@@ -35,7 +35,7 @@ public class SearchControllerTest
 	SearchController searchcontroller;
 	
 	@Mock
-	UserService userServiceMock;
+	UserService userService;
 
 	SearchModel searchModel = new SearchModel();
 	UserModel userModel;
@@ -56,20 +56,19 @@ public class SearchControllerTest
 		
 		User user1=new User(1l,"abc@gmail.com","abc", "abc", LocalDate.now(), "5.7", "single", "marathi", "hindu", "pune", 9552524243l, 25);
 		
-		//BeanUtils.copyProperties(user1, userModel);
-	
+		
 		
 		modellist.add(user1);
 		
-		System.out.println(modellist);
+		
 	}
 	
 
-	@Test(expected = RecordNotFoundException.class)
-	public void testsearchProfileWithFailure() throws RecordNotFoundException
+	@Test(expected = ApplicationException.class)
+	public void testsearchProfileWithFailure() throws ApplicationException
 	{
-		//Mockito.when(userServiceMock.searchProfile(searchModel)).thenReturn(modellist);
-		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(25,"5.7","Hindu", "Pune", "single");
+		
+		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(23,"6","Hindu", "Pune", "single");
 		assertEquals(400, searchProfile.getBody().getResponseStatus().value());
 		
 	}
@@ -77,11 +76,11 @@ public class SearchControllerTest
 	
 	
 	@Test
-	public void testsearchProfileWithsucess() throws RecordNotFoundException
+	public void testsearchProfileWithsucess() throws ApplicationException
 	{
 		
 		
-		Mockito.when(userServiceMock.searchProfile(searchModel)).thenReturn(modellist);
+		Mockito.when(userService.searchProfile(Mockito.anyObject())).thenReturn(modellist);
 		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(25,"5.7","Hindu", "Pune", "single");
 		assertEquals(200, searchProfile.getBody().getResponseStatus().value());
 		
