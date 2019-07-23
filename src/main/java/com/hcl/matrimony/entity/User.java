@@ -17,7 +17,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
- class User {
+ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
