@@ -15,4 +15,6 @@ public interface LikeRepository extends JpaRepository<MyLike, Long> {
 	public MyLike findByFollowerUserIdAndFollowingUserId(Long followerUserId,Long followingUserId);
 	
 	public List<MyLike> findByFollowingUserId(Long followingUserId);
+	public Optional<List<MyLike>> findByFollowerUserId(Long userId);
+	
 }

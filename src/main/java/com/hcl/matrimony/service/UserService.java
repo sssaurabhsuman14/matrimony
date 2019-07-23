@@ -1,5 +1,6 @@
 package com.hcl.matrimony.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,38 +63,13 @@ public class UserService
 
 	public User getUser(Long id) throws ApplicationException {
 		User user = new User();
-		user = userRepository.findById(id).get();
-		if( user != null) {
-			return user;
+		Optional<User> findByIdOptional = userRepository.findById(id);
+		if(findByIdOptional.isPresent()) {
+			return findByIdOptional.get();
 		}else {
 			throw new ApplicationException("User with given id does not exists !!!");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 public List<UserModel> getFollowing(Long followingUserId){
 		
@@ -110,6 +86,29 @@ public List<UserModel> getFollowing(Long followingUserId){
 			}
 		}
 		return model;
+		
+	}
+
+
+	public List<UserModel> fetchFollowList(Long userId) throws ApplicationException 
+	{
+		List<UserModel> userModelList = new ArrayList<>();
+		List<User> fetchFollowList = likeService.fetchFollowList(userId);
+		
+		return mappingEntityListToModelList(fetchFollowList,userModelList);
+		
+	}
+
+
+	private List<UserModel> mappingEntityListToModelList(List<User> fetchFollowList, List<UserModel> userModelList) 
+	{
+		UserModel userModel = new UserModel();
+		for(User user : fetchFollowList)
+		{
+			BeanUtils.copyProperties(user, userModel);
+			userModelList.add(userModel);
+		}
+		return userModelList;
 		
 	}
 
