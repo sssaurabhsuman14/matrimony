@@ -35,8 +35,8 @@ import lombok.*;
 	@Column(name = "user_name", nullable=false)
 	private String userName;
 	
-	@Column(name = "dob", nullable=false)
-	private LocalDate dob;
+	@Column(name = "date_of_birth", nullable=false)
+	private LocalDate dateOfBirth;
 	
 	@Column(name = "height", nullable=false)
 	private String height;
@@ -45,7 +45,7 @@ import lombok.*;
 	private String maritalStatus;
 	
 	@Column(name = "mother_tounge", nullable=false)
-	private String motheTounge;
+	private String motherTounge;
 	
 	@Column(name = "religion", nullable=false)
 	private String religion;
@@ -53,8 +53,8 @@ import lombok.*;
 	@Column(name = "city", nullable=false)
 	private String city;
 	
-	@Column(name = "mobile", nullable=false)
-	private Long mobile;
+	@Column(name = "mobile_No", nullable=false)
+	private Long mobileNo;
 	
 	
 	
