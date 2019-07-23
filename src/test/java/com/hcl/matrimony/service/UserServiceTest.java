@@ -22,10 +22,16 @@ import com.hcl.matrimony.entity.User;
 import com.hcl.matrimony.exception.ApplicationException;
 import com.hcl.matrimony.model.UserModel;
 import com.hcl.matrimony.repository.UserRepository;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.hcl.matrimony.repository.UserRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserServiceTest 
-{
+public class UserServiceTest {
+	
 	@InjectMocks
 	UserService userService;
 	
@@ -75,4 +81,8 @@ public class UserServiceTest
 		assertNotEquals("sagar123", userModel.getPassword());
 	}
 	
+	UserRepository userRepository;
+	
+	
+
 }

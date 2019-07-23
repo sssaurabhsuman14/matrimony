@@ -1,6 +1,8 @@
 package com.hcl.matrimony.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.hcl.matrimony.entity.MyLike;
 import com.hcl.matrimony.entity.User;
 import com.hcl.matrimony.exception.ApplicationException;
+import com.hcl.matrimony.model.MyLikeModel;
 import com.hcl.matrimony.model.UserModel;
 import com.hcl.matrimony.repository.LikeRepository;
 import com.hcl.matrimony.validation.Validation;
@@ -55,6 +58,50 @@ public class LikeService {
 
 		return model;
 
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<Long>findFollowerIdByFollowingUserId(Long followingUserId){
+		List<Long> myLikeIdModels = new ArrayList<>();
+		
+		List<MyLike> myLikes = myLikeRepository.findByFollowingUserId(followingUserId);
+		
+		if( !myLikes.isEmpty() ) {
+			for(MyLike myLike : myLikes ) {
+				Long followerId = myLike.getFollowerUserId();
+				myLikeIdModels.add(followerId);
+			}
+		}
+		return myLikeIdModels;
 	}
 
 }

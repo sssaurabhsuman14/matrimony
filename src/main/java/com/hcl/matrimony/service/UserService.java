@@ -19,6 +19,9 @@ public class UserService
 {
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	LikeService likeService;
 
 	public UserModel doLogin(String email, String password) throws ApplicationException 
 	{
@@ -62,6 +65,49 @@ public class UserService
 		}else {
 			throw new ApplicationException("User with given id does not exists !!!");
 		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+public List<UserModel> getFollowing(Long followingUserId){
+		
+		List<UserModel> model = new ArrayList<>();
+		List<Long> followersUserIdList = likeService.findFollowerIdByFollowingUserId(followingUserId);
+		
+		List<User> user = userRepository.findByUserIdIn(followersUserIdList);
+		
+		if( !user.isEmpty() ) {
+			for(User use : user ) {
+				UserModel userModel = new UserModel();
+				BeanUtils.copyProperties(use, userModel);
+				model.add(userModel);
+			}
+		}
+		return model;
+		
 	}
 
 }
