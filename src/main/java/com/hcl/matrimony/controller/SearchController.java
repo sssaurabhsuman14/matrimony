@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hcl.matrimony.entity.User;
+import com.hcl.matrimony.exception.ApplicationException;
 import com.hcl.matrimony.exception.RecordNotFoundException;
 import com.hcl.matrimony.model.ResponseData;
 import com.hcl.matrimony.model.SearchModel;
@@ -25,7 +26,7 @@ public class SearchController {
 	UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<?> searchProfile(@PathVariable(value = "age") Integer age, @PathVariable(value = "height") String height, @PathVariable(value = "religion") String religion, @PathVariable(value = "city") String city, @PathVariable(value = "maritalStatus") String maritalStatus){
+	public ResponseEntity<?> searchProfile(@PathVariable(value = "age") Integer age, @PathVariable(value = "height") String height, @PathVariable(value = "religion") String religion, @PathVariable(value = "city") String city, @PathVariable(value = "maritalStatus") String maritalStatus) throws ApplicationException{
 		
 		SearchModel searchModel = new SearchModel();
 		searchModel.setAge(age);
@@ -41,7 +42,7 @@ public class SearchController {
 
 		return new ResponseEntity (response ,HttpStatus.OK);
 		}
-		throw new RecordNotFoundException("No matching profiles found with specified criteria.");
+		throw new ApplicationException("No matching profiles found with specified criteria.");
 	}
 
 }
