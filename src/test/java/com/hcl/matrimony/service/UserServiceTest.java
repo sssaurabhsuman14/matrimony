@@ -63,7 +63,7 @@ public class UserServiceTest
 	{
 		Mockito.when(userRepositoryMock.findByEmail(Mockito.anyString())).thenReturn(optionalUser);
 		userModel = userService.doLogin("sagargaikwad966@gmail.com", "abc123");
-		assertNotEquals("sagargaikwad966@gmail.com", userModel.getEmail());	
+		assertEquals("abc123", userModel.getPassword());	
 	}
 	
 	@Test(expected = ApplicationException.class)
