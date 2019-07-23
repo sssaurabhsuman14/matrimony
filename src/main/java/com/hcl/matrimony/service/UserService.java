@@ -1,6 +1,5 @@
 package com.hcl.matrimony.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +28,7 @@ public class UserService
 		Optional<User> findByEmailOptional = userRepository.findByEmail(email);
 
 		boolean isOptionalPresent = findByEmailOptional.isPresent();
-		
+
 		if(isOptionalPresent)
 		{
 			User user = findByEmailOptional.get();
@@ -52,8 +51,12 @@ public class UserService
 	public List<User> searchProfile(SearchModel searchModel) {
 
 		List<User> userList = userRepository.searchProfiles(searchModel.getAge(), searchModel.getHeight(), searchModel.getReligion(), searchModel.getCity(), searchModel.getMaritalStatus());
-		List<UserModel> userModelList = new ArrayList<UserModel>();
 
+		for (User user : userList) {
+			if(user.getUserId().equals(searchModel.getUserId())) {
+				userList.remove(user);
+			}
+		}
 		return userList;
 	}
 

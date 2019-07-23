@@ -27,5 +27,6 @@ public class UserModel {
 	String religion;
 	String city;
 	Long mobileNo;
+	Integer age;
 	
 }

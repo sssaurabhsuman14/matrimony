@@ -9,29 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.matrimony.entity.User;
-import com.hcl.matrimony.model.ResponseData;
 import com.hcl.matrimony.model.UserModel;
 import com.hcl.matrimony.service.RegistrationService;
+import com.hcl.matrimony.validation.Validation;
 
 @RestController
 @RequestMapping("/register")
-public class RegistrationController 
-{
+public class RegistrationController {
 	@Autowired
 	RegistrationService registrationService;
 
-	
 	@PostMapping("/reg")
 	public ResponseEntity<?> createUser(@RequestBody UserModel user) throws Exception
 	{
+		Validation.validateUser(user);
+		Validation.validateEmail(user);
 		registrationService.addUser(user);
-		
-		return new ResponseEntity<String>("success",HttpStatus.OK);
+		return new ResponseEntity<>("Hurrayy!!!, "+user.getUserName()+" Welcome to Matrimony", HttpStatus.OK);		
+		 
 		
 		
 		
 	}
-	
-	
+
 }

@@ -7,6 +7,8 @@ public class SearchModel {
 	private String religion;
 	private String city;
 	private String maritalStatus;
+	private Long userId;
+	
 	public int getAge() {
 		return age;
 	}
@@ -37,13 +39,21 @@ public class SearchModel {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-	public SearchModel(int age, String height, String religion, String city, String maritalStatus) {
+	
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public SearchModel(int age, String height, String religion, String city, String maritalStatus, Long userId) {
 		super();
 		this.age = age;
 		this.height = height;
 		this.religion = religion;
 		this.city = city;
 		this.maritalStatus = maritalStatus;
+		this.userId = userId;
 	}
 	public SearchModel() {
 		super();
