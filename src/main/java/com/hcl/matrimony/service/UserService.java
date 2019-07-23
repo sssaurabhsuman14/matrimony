@@ -1,5 +1,6 @@
 package com.hcl.matrimony.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +45,7 @@ public class UserService
 
 	public List<UserModel> searchProfile(SearchModel searchModel) {
 
+		//int requiredDOBYear = LocalDate.now().getYear()-searchModel.getAge();
 		List<User> userList = userRepository.searchProfiles(searchModel.getAge(), searchModel.getHeight(), searchModel.getReligion(), searchModel.getCity(), searchModel.getMaritalStatus());
 		List<UserModel> userModelList = new ArrayList<UserModel>();
 		
