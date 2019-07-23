@@ -56,12 +56,7 @@ import lombok.*;
 	@Column(name = "mobile_No", nullable=false)
 	private Long mobileNo;
 	
+	@Column(name = "age", nullable=false)
+	private int age;
 	
-	
-	
-	
-	
-	
-	
-
 }
