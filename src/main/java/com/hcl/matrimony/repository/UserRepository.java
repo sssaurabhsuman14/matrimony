@@ -20,8 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long>{
 
 	public Optional<User> findByEmail(String email);
 	
-	@Query(value="select * from user where age = (:age) and height = (:height) and religion= (:religion)"
-			+ " and city = (:city) and marital_status = (:maritalStatus) ", nativeQuery = true)
+	@Query(value="select * from user where age = :age and height = :height and religion= :religion"
+			+ " and city = :city and marital_status = :maritalStatus ", nativeQuery = true)
 	List<User> searchProfiles (int age, String height, String religion, String city, String maritalStatus);
+
 
 }
