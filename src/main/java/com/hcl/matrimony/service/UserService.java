@@ -24,7 +24,9 @@ public class UserService
 		UserModel userModel = new UserModel();
 		Optional<User> findByEmailOptional = userRepository.findByEmail(email);
 
-		if(findByEmailOptional.isPresent())
+		boolean isOptionalPresent = findByEmailOptional.isPresent();
+		
+		if(isOptionalPresent)
 		{
 			User user = findByEmailOptional.get();
 			if(user.getPassword().equals(password))

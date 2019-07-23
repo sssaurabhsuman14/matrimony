@@ -24,4 +24,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 			+ " and city = (:city) and marital_status = (:maritalStatus) ", nativeQuery = true)
 	List<User> searchProfiles (int age, String height, String religion, String city, String maritalStatus);
 
+
 }
