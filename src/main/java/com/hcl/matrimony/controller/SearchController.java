@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,15 +31,18 @@ public class SearchController {
 	@Autowired
 	Validation validation;
 
+	private static final Logger logger = LogManager.getLogger(SearchController.class);
+
 	@PostMapping
 	public ResponseEntity<ResponseData> searchProfile(@Valid @RequestBody SearchModel searchModel) throws ApplicationException{
 
-		if(validation.validateSearch(searchModel)) {
+		logger.info("-------------Inside searchProfileMethod----------------------");
+		boolean isValidated = validation.validateSearch(searchModel);
+		if(isValidated) {
 			List<User> userList = userService.searchProfile(searchModel);
 			if (!userList.isEmpty()) {
 				ResponseData response = new ResponseData("Please find below profiles based on search parameters " , HttpStatus.OK, userList);
 				return  new ResponseEntity<ResponseData> (response ,HttpStatus.OK);
-
 			} 
 		}else {
 

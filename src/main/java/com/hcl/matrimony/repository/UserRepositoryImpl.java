@@ -62,9 +62,9 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
 			}
 			stringBuilder.append(" city = '"+ searchModel.getCity() +"' ");
 		}
-
+		if(!ObjectUtils.isEmpty(searchModel.getUserId())) {
 		stringBuilder.append("and user_id  !=  '"+ searchModel.getUserId() +"' ");
-
+		}
 		final Query query = entityManager.createNativeQuery(stringBuilder.toString(), User.class);
 
 		final List<User> results = query.getResultList();

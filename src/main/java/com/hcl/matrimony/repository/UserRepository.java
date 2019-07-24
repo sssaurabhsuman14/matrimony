@@ -21,14 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long>, UserRepositor
 
 	public Optional<User> findByEmail(String email);
 
-	StringBuilder strB = new StringBuilder();
-
-
-	/*@Query(value="select * from user where age = :age and height = :height and religion= :religion"
-			+ " and city = :city and marital_status = :maritalStatus ", nativeQuery = true)*/
-	//public List<User> searchProfiles (int age, String height, String religion, String city, String maritalStatus);
-
-
 	public List<User> findByUserIdIn(List<Long> ids);
 
 }

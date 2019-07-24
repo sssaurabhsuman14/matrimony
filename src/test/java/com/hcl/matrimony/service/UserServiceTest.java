@@ -58,14 +58,15 @@ public class UserServiceTest {
 		
 		optionalUser = Optional.of(user);
 		
-		searchModel.setAge((Integer)21);
+		searchModel.setMinAge(24);
+		searchModel.setMaxAge(28);
+		searchModel.setMinHeight("5");
+		searchModel.setMaxHeight("7");
 		searchModel.setCity("pune");
-		searchModel.setHeight("6");
 		searchModel.setMaritalStatus("single");
 		searchModel.setReligion("hindu");
 		searchModel.setUserId(1L);
 		
-		user.setAge((Integer)21);
 		user.setCity("pune");
 		user.setDateOfBirth(LocalDate.parse("1992-11-06"));
 		user.setEmail("abc@gmail.com");
@@ -109,8 +110,8 @@ public class UserServiceTest {
 
 	@Test
 	public void searchProfile() {
-		Mockito.when(userRepositoryMock.searchProfiles((Integer)21, "pune", "6", "single", "hindu")).thenReturn(userList);
+		Mockito.when(userRepositoryMock.searchProfilesCustom(searchModel)).thenReturn(userList);
 		List<User> userListService = userService.searchProfile(searchModel);
-		assertNotEquals(userList, userListService);
+		assertEquals(userList, userListService);
 	}
 }
