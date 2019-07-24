@@ -1,5 +1,6 @@
 package com.hcl.matrimony.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,7 @@ public class UserService
 
 	public List<User> searchProfile(SearchModel searchModel) {
 
+		searchModel = calculateMinAndMaxBirthYear(searchModel);
 		List<User> userList = userRepository.searchProfilesCustom(searchModel);
 
 		for (User user : userList) {
@@ -60,6 +62,17 @@ public class UserService
 		}
 		return userList;
 	}
+
+	private SearchModel calculateMinAndMaxBirthYear(SearchModel searchModel) {
+		int minYear = LocalDate.now().getYear()-searchModel.getMaxAge();
+		int maxYear = LocalDate.now().getYear()-searchModel.getMinAge();
+		
+		searchModel.setMinAge(minYear);
+		searchModel.setMaxAge(maxYear);
+
+		return searchModel;
+	}
+
 
 	public User getUser(Long id) throws ApplicationException {
 		Optional<User> findByIdOptional = userRepository.findById(id);

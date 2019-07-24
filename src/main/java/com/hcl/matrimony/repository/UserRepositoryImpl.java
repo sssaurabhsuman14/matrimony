@@ -30,7 +30,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom{
 		stringBuilder.append("Select * from User where ");
 
 		if(!(ObjectUtils.isEmpty(searchModel.getMinAge()) && ObjectUtils.isEmpty(searchModel.getMaxAge()))) {
-			stringBuilder.append("age between '"+ searchModel.getMinAge() +"' and '"+ searchModel.getMaxAge() +"' ");
+			stringBuilder.append("year(date_of_birth) between '"+ searchModel.getMinAge() +"' and '"+ searchModel.getMaxAge() +"' ");
 		}
 
 		if(!(ObjectUtils.isEmpty(searchModel.getMinHeight()) && ObjectUtils.isEmpty(searchModel.getMaxHeight()))) {
