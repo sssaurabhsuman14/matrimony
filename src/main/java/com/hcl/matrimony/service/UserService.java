@@ -19,7 +19,7 @@ public class UserService
 {
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	LikeService likeService;
 
@@ -51,7 +51,7 @@ public class UserService
 
 	public List<User> searchProfile(SearchModel searchModel) {
 
-		List<User> userList = userRepository.searchProfiles(searchModel.getAge(), searchModel.getHeight(), searchModel.getReligion(), searchModel.getCity(), searchModel.getMaritalStatus());
+		List<User> userList = userRepository.searchProfilesCustom(searchModel);
 
 		for (User user : userList) {
 			if(user.getUserId().equals(searchModel.getUserId())) {
@@ -69,14 +69,14 @@ public class UserService
 			throw new ApplicationException("User with given id does not exists !!!");
 		}
 	}
-	
-public List<UserModel> getFollowing(Long followingUserId){
-		
+
+	public List<UserModel> getFollowing(Long followingUserId){
+
 		List<UserModel> model = new ArrayList<>();
 		List<Long> followersUserIdList = likeService.findFollowerIdByFollowingUserId(followingUserId);
-		
+
 		List<User> user = userRepository.findByUserIdIn(followersUserIdList);
-		
+
 		if( !user.isEmpty() ) {
 			for(User use : user ) {
 				UserModel userModel = new UserModel();
@@ -85,7 +85,7 @@ public List<UserModel> getFollowing(Long followingUserId){
 			}
 		}
 		return model;
-		
+
 	}
 
 
@@ -94,12 +94,12 @@ public List<UserModel> getFollowing(Long followingUserId){
 		List<UserModel> userModelList = new ArrayList<>();
 		List<User> fetchFollowList = likeService.fetchFollowList(userId);
 		return mappingEntityListToModelList(fetchFollowList,userModelList);
-		
+
 	}
 
 	private List<UserModel> mappingEntityListToModelList(List<User> fetchFollowList, List<UserModel> userModelList) 
 	{
-		
+
 		for(User user : fetchFollowList)
 		{
 			UserModel userModel = new UserModel();
@@ -107,7 +107,7 @@ public List<UserModel> getFollowing(Long followingUserId){
 			userModelList.add(userModel);
 		}
 		return userModelList;
-		
+
 	}
 
 }

@@ -24,8 +24,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userId")
- public class User {
-	
+public class User {
+
 	public User(User user) {
 	}
 
@@ -33,39 +33,39 @@ import lombok.NoArgsConstructor;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable=false)
 	private Long userId;
-	
+
 	@Email
 	@Column(name = "email", nullable=false)
 	private String email;
-	
+
 	@Column(name = "password", nullable=false)
 	private String password;
-	
+
 	@Column(name = "user_name", nullable=false)
 	private String userName;
-	
+
 	@Column(name = "date_of_birth", nullable=false)
 	private LocalDate dateOfBirth;
-	
+
 	@Column(name = "height", nullable=false)
 	private String height;
-	
+
 	@Column(name = "marital_status", nullable=false)
 	private String maritalStatus;
-	
+
 	@Column(name = "mother_tounge", nullable=false)
 	private String motherTounge;
-	
+
 	@Column(name = "religion", nullable=false)
 	private String religion;
-	
+
 	@Column(name = "city", nullable=false)
 	private String city;
-	
+
 	@Column(name = "mobile_No", nullable=false)
 	private Long mobileNo;
-	
+
 	@Column(name = "age", nullable=false)
 	private int age;
-	
+
 }

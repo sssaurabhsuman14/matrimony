@@ -4,10 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import com.hcl.matrimony.entity.MyLike;
 import com.hcl.matrimony.exception.ApplicationException;
+import com.hcl.matrimony.model.SearchModel;
 import com.hcl.matrimony.model.UserModel;
 
 @Component
@@ -18,7 +20,7 @@ public class Validation {
 			throw new ApplicationException("Please enter mandatory fields");
 
 	}
-	
+
 	public static boolean hasMyLikeEntityAlreadyPresent(MyLike mylike) {
 		if(mylike != null) {
 			return true;
@@ -46,4 +48,13 @@ public class Validation {
 			throw new ApplicationException("Please entre vaild email id");
 	}
 
+	public boolean validateSearch(SearchModel searchModel) {
+
+		if(!(ObjectUtils.isEmpty(searchModel.getMinAge()) && ObjectUtils.isEmpty(searchModel.getMaxAge())) || !(ObjectUtils.isEmpty(searchModel.getMinHeight()) && ObjectUtils.isEmpty(searchModel.getMaxHeight())) || !ObjectUtils.isEmpty(searchModel.getReligion()) || !ObjectUtils.isEmpty(searchModel.getMaritalStatus()) || !ObjectUtils.isEmpty(searchModel.getCity())) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 }
