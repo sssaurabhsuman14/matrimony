@@ -37,6 +37,7 @@ public class UserServiceTest {
 	@Mock
 	LoginController loginController;
 		
+
 	User user = new User();
 	UserModel userModel = new UserModel();
 	Optional<User> optionalUser;
@@ -50,7 +51,11 @@ public class UserServiceTest {
 		user.setPassword("sagar123");
 		user.setUserName("Sagar Gaikwad");
 		
-		//BeanUtils.copyProperties(userModel, user);
+
+		user.setEmail("sagargaikwad@gmail.com");
+		user.setPassword("sagar123");
+		user.setUserName("Sagar Gaikwad");
+		
 		optionalUser = Optional.of(user);
 		
 		searchModel.setAge((Integer)21);
@@ -90,7 +95,7 @@ public class UserServiceTest {
 	{
 		Mockito.when(userRepositoryMock.findByEmail(Mockito.anyString())).thenReturn(optionalUser);
 		userModel = userService.doLogin("sagargaikwad966@gmail.com", "abc123");
-		assertEquals("abc123", userModel.getPassword());	
+		assertNotEquals("abc123", userModel.getPassword());	
 	}
 	
 	@Test(expected = ApplicationException.class)

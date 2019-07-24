@@ -32,7 +32,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		ResponseData response = new ResponseData(ex.getMessage(), status, errorList);
 		
-		return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(ApplicationException.class)
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		 List<String> errorList = new ArrayList<>();
 		 errorList.add(ex.getMessage());
 		 ResponseData response = new ResponseData(ex.getMessage(), HttpStatus.BAD_REQUEST, errorList);
-		 return new ResponseEntity<Object>(response, HttpStatus.BAD_REQUEST);
+		 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		 
 	 }
  

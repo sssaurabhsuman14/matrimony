@@ -17,6 +17,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<sonar.coverage.exclusions>**/entity/*,**/model/*,**/exception/*,**/config/*</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
@@ -46,6 +47,7 @@
 		<dependency>
 			<groupId>org.codehaus.mojo</groupId>
 			<artifactId>sonar-maven-plugin</artifactId>
+			
 			<version>3.6.0.1398</version>
 			<type>pom</type>
 		</dependency>

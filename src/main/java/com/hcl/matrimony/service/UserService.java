@@ -62,7 +62,6 @@ public class UserService
 	}
 
 	public User getUser(Long id) throws ApplicationException {
-		User user = new User();
 		Optional<User> findByIdOptional = userRepository.findById(id);
 		if(findByIdOptional.isPresent()) {
 			return findByIdOptional.get();
@@ -97,7 +96,6 @@ public List<UserModel> getFollowing(Long followingUserId){
 		return mappingEntityListToModelList(fetchFollowList,userModelList);
 		
 	}
-
 
 	private List<UserModel> mappingEntityListToModelList(List<User> fetchFollowList, List<UserModel> userModelList) 
 	{

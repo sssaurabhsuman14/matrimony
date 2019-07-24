@@ -39,7 +39,7 @@ public class SearchController {
 		if (!userList.isEmpty()) {
 			ResponseData response = new ResponseData("Please find below profiles based on search parameters " , HttpStatus.OK, userList);
 
-			return new ResponseEntity<ResponseData> (response ,HttpStatus.OK);
+			return new ResponseEntity<> (response ,HttpStatus.OK);
 		}
 		throw new ApplicationException("No matching profiles found with specified criteria.");
 	}

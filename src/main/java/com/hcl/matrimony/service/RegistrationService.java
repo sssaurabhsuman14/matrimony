@@ -18,12 +18,10 @@ public class RegistrationService {
 	UserRepository userRepository;
 	
 
-	public String addUser(UserModel userdto) throws Exception{
+	public String addUser(UserModel userdto){
 	
 		User user= new User();
 		BeanUtils.copyProperties(userdto, user);
-		
-		System.out.println(user);
 		
 		userRepository.save(user);
 		return "Success";

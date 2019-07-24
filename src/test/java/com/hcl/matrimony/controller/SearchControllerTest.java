@@ -68,7 +68,7 @@ public class SearchControllerTest
 	public void testsearchProfileWithFailure() throws ApplicationException
 	{
 		
-		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(23,"6","Hindu", "Pune", "single");
+		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(23,"6","Hindu", "Pune", "single", 1L);
 		assertEquals(400, searchProfile.getBody().getResponseStatus().value());
 		
 	}
@@ -81,7 +81,7 @@ public class SearchControllerTest
 		
 		
 		Mockito.when(userService.searchProfile(Mockito.anyObject())).thenReturn(modellist);
-		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(25,"5.7","Hindu", "Pune", "single");
+		ResponseEntity<ResponseData> searchProfile = (ResponseEntity<ResponseData>) searchcontroller.searchProfile(25,"5.7","Hindu", "Pune", "single", 1L);
 		assertEquals(200, searchProfile.getBody().getResponseStatus().value());
 		
 	}

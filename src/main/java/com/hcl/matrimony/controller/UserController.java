@@ -1,5 +1,6 @@
 package com.hcl.matrimony.controller;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +25,13 @@ public class UserController {
 	
 
 	@GetMapping("/{userId}")
-	public ResponseEntity<?> follow(@PathVariable ("userId") Long userId){
+	public ResponseEntity<ResponseData> follow(@PathVariable ("userId") Long userId){
 		
-		return new ResponseEntity<>(userService.getFollowing(userId), HttpStatus.OK);
+		List<UserModel> followingModelList = userService.getFollowing(userId);
+		
+		ResponseData response = new ResponseData("Hi, Please find your Follower List", HttpStatus.OK, followingModelList);
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/follow/{userId}")
@@ -37,7 +42,7 @@ public class UserController {
 		
 		User user = userService.getUser(userId);
 		
-		List<UserModel> fetchFollowList = (List<UserModel>) userService.fetchFollowList(userId);
+		List<UserModel> fetchFollowList = userService.fetchFollowList(userId);
 		ResponseData response = new ResponseData("Hi, "+user.getUserName()+" Please find your Follow List", HttpStatus.OK, fetchFollowList);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

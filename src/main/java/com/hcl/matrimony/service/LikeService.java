@@ -33,13 +33,13 @@ public class LikeService {
 
 		User followerUser = userService.getUser(followerUserId);
 		User followingUser = userService.getUser(followingUserId);
-		
+
 		MyLike myLike = myLikeRepository.findByFollowerUserIdAndFollowingUserId(followerUserId, followingUserId);
-		
+
 		boolean isAlreadyLiked = Validation.hasMyLikeEntityAlreadyPresent(myLike);
-		
-		if( followerUser != null && followingUser != null && !isAlreadyLiked) {
-			
+
+		if (followerUser != null && followingUser != null && !isAlreadyLiked) {
+
 			entity.setFollowerUserId(followerUserId);
 			entity.setFollowingUserId(followingUserId);
 			myLikeRepository.save(entity);
@@ -53,20 +53,21 @@ public class LikeService {
 			model.put("followerUser", userFollower);
 			model.put("followingUser", userFollowing);
 		} else {
-			throw new ApplicationException("User does not exist or you have already liked the selected user. Please try later !!!");
+			throw new ApplicationException(
+					"User does not exist or you have already liked the selected user. Please try later !!!");
 		}
 
 		return model;
 
 	}
 
-	public List<Long>findFollowerIdByFollowingUserId(Long followingUserId){
+	public List<Long> findFollowerIdByFollowingUserId(Long followingUserId) {
 		List<Long> myLikeIdModels = new ArrayList<>();
-		
+
 		List<MyLike> myLikes = myLikeRepository.findByFollowingUserId(followingUserId);
-		
-		if( !myLikes.isEmpty() ) {
-			for(MyLike myLike : myLikes ) {
+
+		if (!myLikes.isEmpty()) {
+			for (MyLike myLike : myLikes) {
 				Long followerId = myLike.getFollowerUserId();
 				myLikeIdModels.add(followerId);
 			}
@@ -74,30 +75,24 @@ public class LikeService {
 		return myLikeIdModels;
 	}
 
-	public List<User> fetchFollowList(Long userId) throws ApplicationException 
-	{
+	public List<User> fetchFollowList(Long userId) throws ApplicationException {
 		User loginUser = userService.getUser(userId);
-		User user = new User();
-		
+
 		List<User> followUserList = new ArrayList<>();
 		Optional<List<MyLike>> findByFollowerUserIdOptional = myLikeRepository.findByFollowerUserId(userId);
 		boolean isOptionalPresent = findByFollowerUserIdOptional.isPresent();
-		if(isOptionalPresent)
-		{
-			List<MyLike> myLikeList = (List<MyLike>) findByFollowerUserIdOptional.get();
-			
-			for(MyLike myLikeRecord : myLikeList)
-			{
-				 user = userService.getUser(myLikeRecord.getFollowingUserId());
+		if (isOptionalPresent) {
+			List<MyLike> myLikeList = findByFollowerUserIdOptional.get();
+
+			for (MyLike myLikeRecord : myLikeList) {
+				User user = userService.getUser(myLikeRecord.getFollowingUserId());
 				followUserList.add(user);
 			}
-		}
-		else
-		{
-			throw new ApplicationException("Hi, "+loginUser.getUserName()+" You have empty follow List");
+		} else {
+			throw new ApplicationException("Hi, " + loginUser.getUserName() + " You have empty follow List");
 		}
 		return followUserList;
-		
+
 	}
 
 }
